@@ -11,3 +11,5 @@ Anki allows us to
 We're not against people/companies making money, however, should 
 
 https://github.com/polo-mint-driller/plad_anki/blob/master/no_pt_accent
+
+- [ ]
