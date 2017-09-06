@@ -1,12 +1,7 @@
-## Install
+## On versions
 
-1. Install Anki https://apps.ankiweb.net/
+1. Completely new to Anki? 
+&dash; Download the file marked `apkg`
 
-2. Download PLAD Anki 5000 Words by Frequency.apkg
-    * And the audio pack (Brazilian Portuguese Only currently)
-
-3. Import the deck 
-    * File &dash; Import
-    
-4. Extract the audio to the collection.media folder of Anki
-    * See the manual for more: https://apps.ankiweb.net/docs/manual.html#files
+2. Not your first rodeo? Have the deck already?
+&dash; Download the `csv` and update the deck. See the wiki if unsure
