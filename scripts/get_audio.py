@@ -19,6 +19,8 @@ import time
 
 api_key = sys.argv[1]
 audio_path = sys.argv[2]
+dir_path = os.path.dirname(os.path.abspath(__file__))
+wiki_csv = os.path.join(dir_path, 'csv/wiki.csv')
 loc_db = audio_path + '.locate.db'
 
 def build_db():
@@ -36,7 +38,7 @@ def build_wiki():
     csv_head = ['**Word**', '**Accent (BR)**', '**Accent (PT)**', '**Link**']
     csv_form = ['---', ':---:', ':---:', '---']
 
-    with open('csv/wiki.csv', 'wb') as wiki_head:
+    with open(wiki_csv, 'wb') as wiki_head:
         csv_wr = csv.writer(wiki_head, delimiter='|')
         csv_wr.writerow(csv_head)
         csv_wr.writerow(csv_form)
@@ -45,7 +47,7 @@ def build_wiki():
 
 def wiki_table( wiki_word, acc_br, acc_pt ):
     """wiki table"""
-
+    
     csv_w = []
     csv_w.append(wiki_word)
 
@@ -62,7 +64,7 @@ def wiki_table( wiki_word, acc_br, acc_pt ):
     csv_w.append('https://forvo.com/word-record/' + wiki_word + '/pt/')
     
     if acc_br == False or acc_pt == False:
-        with open('csv/wiki.csv', 'ab') as wiki_file:
+        with open(wiki_csv, 'ab') as wiki_file:
             csv_wr = csv.writer(wiki_file, delimiter='|')
             csv_wr.writerow(csv_w)
 
@@ -138,11 +140,13 @@ def main():
     build_db()
     
     build_wiki()
+    
+    current_csv = os.path.join(dir_path, 'csv/current.csv')
 
-    with open('csv/current.csv') as csv_file:
+    with open(current_csv) as csv_file:
         rows = csv.DictReader(csv_file, delimiter=',',
         fieldnames=['card','word','te','ep','ee','audio','tag'])
-        for row in islice(rows,1000):
+        for row in islice(rows,10):
             accent_br = loc_audio( row['word'], 'br' )
             accent_pt = loc_audio( row['word'], 'pt' )
         
